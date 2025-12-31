@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Desenvolvedor</title>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.com/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -15,6 +17,7 @@
 
         <form action="#" method="post">
             <fieldset class="grupo">
+                <legend class="visually-hidden">Informações pessoais</legend>
                 <div class="campo">
                     <label for="nome"><strong>Nome</strong></label>
                     <input type="text" name="nome" id="nome" required aria-required="true">
