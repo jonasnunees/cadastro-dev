@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Desenvolvedor</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1 class="titulo">Cadastro de DEV</h1>
+            <p class="subtitulo">Complete suas informações</p>
+        </header>
+
+        <form action="#" method="post">
+            <fieldset class="grupo">
+                <div class="campo">
+                    <label for="nome"><strong>Nome</strong></label>
+                    <input type="text" name="nome" id="nome" required aria-required="true">
+                </div>
+                <div class="campo">
+                    <label for="sobrenome"><strong>Sobrenome</strong></label>
+                    <input type="text" name="sobrenome" id="sobrenome" required aria-required="true">
+                </div>
+            </fieldset>
+
+            <div class="campo">
+                <label for="email"><strong>E-mail</strong></label>
+                <input type="email" name="email" id="email" required aria-required="true">
+            </div>
+
+            <fieldset class="campo">
+                <legend><strong>De qual lado da aplicação você desenvolve?</strong></legend>
+                <label>
+                    <input type="radio" name="devweb" value="frontend" checked>
+                    Front-end
+                </label>
+                <label>
+                    <input type="radio" name="devweb" value="backend">
+                    Back-end
+                </label>
+                <label>
+                    <input type="radio" name="devweb" value="fullstack">
+                    Full Stack
+                </label>
+            </fieldset>
+
+            <div class="campo">
+                <label for="senioridade"><strong>Senioridade</strong></label>
+                <select name="senioridade" id="senioridade" required aria-required="true">
+                    <option value="">Selecione</option>
+                    <option value="junior">Junior</option>
+                    <option value="pleno">Pleno</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </div>
+
+            <fieldset class="grupo">
+                <legend><strong>Selecione as tecnologias que utiliza:</strong></legend>
+                <div class="campo">
+                    <label>
+                        <input type="checkbox" name="tecnologias" id="tecnologia1" value="HTML">
+                        HTML
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="tecnologias" id="tecnologia2" value="CSS">
+                        CSS
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="tecnologias" id="tecnologia3" value="JavaScript">
+                        JavaScript
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="tecnologias" id="tecnologia4" value="PHP">
+                        PHP
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="tecnologias" id="tecnologia5" value="C#">
+                        C#
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="tecnologias" id="tecnologia6" value="Python">
+                        Python
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="tecnologias" id="tecnologia7" value="Java">
+                        Java
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="campo">
+                <label for="experiencia"><strong>Conte um pouco da sua experiência:</strong></label>
+                <textarea name="experiencia" id="experiencia" rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="botao">Concluído</button>
+        </form>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
