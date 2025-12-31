@@ -1,5 +1,14 @@
 // Aguarda o carregamento completo do DOM
 document.addEventListener('DOMContentLoaded', function() {
+    // ===== CONFIGURAÇÃO DO EMAILJS =====
+    // IMPORTANTE: Substitua estas variáveis pelas suas credenciais do EmailJS
+    const EMAILJS_PUBLIC_KEY = 's0hSeKxhe6LKq6UEo'; // Ex: 'xxxxxxxxxxx'
+    const EMAILJS_SERVICE_ID = 'service_sija6pw'; // Ex: 'service_xxxxxxx'
+    const EMAILJS_TEMPLATE_ID = 'template_ti01cq6'; // Ex: 'template_xxxxxxx'
+    
+    // Inicializa o EmailJS com sua Public Key
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    
     const main = document.querySelector('main');
     
     // Armazena o HTML original do formulário
@@ -116,19 +125,57 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         botaoConfirmar.addEventListener('click', function() {
-            // Aqui você pode enviar os dados para o servidor
-            // Por enquanto, apenas mostra uma mensagem de sucesso
-            main.innerHTML = `
-                <header>
-                    <h1 class="titulo">Cadastro concluído!</h1>
-                    <p class="subtitulo">Suas informações foram registradas com sucesso</p>
-                </header>
-                
-                <div class="mensagem-sucesso">
-                    <p>✓ Obrigado por completar seu cadastro, ${dados.nome}!</p>
-                    <button type="button" class="botao" onclick="location.reload()">Novo cadastro</button>
-                </div>
-            `;
+            // Desabilita o botão para evitar cliques múltiplos
+            botaoConfirmar.disabled = true;
+            botaoConfirmar.textContent = 'Enviando...';
+            
+            // Prepara os dados para o email
+            const templateParams = {
+                nome: dados.nome,
+                sobrenome: dados.sobrenome,
+                email: dados.email,
+                devweb: devwebTexto,
+                senioridade: senioridadeTexto,
+                tecnologias: tecnologiasTexto,
+                experiencia: dados.experiencia || 'Não informada'
+            };
+            
+            // Envia o email usando EmailJS
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    console.log('Email enviado com sucesso!', response.status, response.text);
+                    
+                    // Exibe mensagem de sucesso
+                    main.innerHTML = `
+                        <header>
+                            <h1 class="titulo">Cadastro concluído!</h1>
+                            <p class="subtitulo">Suas informações foram registradas com sucesso</p>
+                        </header>
+                        
+                        <div class="mensagem-sucesso">
+                            <p>✓ Obrigado por completar seu cadastro, ${dados.nome}!</p>
+                            <p>📧 Um email de confirmação foi enviado para <strong>${dados.email}</strong></p>
+                            <button type="button" class="botao" onclick="location.reload()">Novo cadastro</button>
+                        </div>
+                    `;
+                }, function(error) {
+                    console.error('Erro ao enviar email:', error);
+                    
+                    // Exibe mensagem de erro
+                    main.innerHTML = `
+                        <header>
+                            <h1 class="titulo">Ops! Algo deu errado</h1>
+                            <p class="subtitulo">Não foi possível enviar o email</p>
+                        </header>
+                        
+                        <div class="mensagem-erro">
+                            <p>❌ Ocorreu um erro ao enviar o email de confirmação.</p>
+                            <p>Por favor, verifique suas configurações do EmailJS.</p>
+                            <p><strong>Erro:</strong> ${error.text || 'Erro desconhecido'}</p>
+                            <button type="button" class="botao" onclick="location.reload()">Tentar novamente</button>
+                        </div>
+                    `;
+                });
         });
     }
     

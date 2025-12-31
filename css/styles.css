@@ -93,8 +93,6 @@ textarea {
     cursor: pointer;
 }
 
-/* Adicione essas regras ao seu arquivo styles.css existente */
-
 .confirmacao {
     margin-top: 2em;
     background-color: #FFFFFF;
@@ -161,4 +159,25 @@ textarea {
     font-size: 1.2em;
     color: #28A745;
     margin-bottom: 1.5em;
+}
+
+.mensagem-erro {
+    margin-top: 2em;
+    text-align: center;
+    background-color: #FFFFFF;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #DC3545;
+}
+
+.mensagem-erro p {
+    font-size: 1.1em;
+    color: #DC3545;
+    margin-bottom: 1em;
+}
+
+.mensagem-erro p:last-of-type {
+    font-size: 0.9em;
+    color: #6C757D;
 }
